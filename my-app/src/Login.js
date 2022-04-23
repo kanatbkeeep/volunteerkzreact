@@ -3,6 +3,7 @@ import '../src/style/header_style.css'
 import Login_box from "./components/login_box";
 import '../src/style/authorization_style.css'
 import '../src/api/UserService'
+import React from 'react';
 
 function Login() {
 
