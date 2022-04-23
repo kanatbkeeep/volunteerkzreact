@@ -6,7 +6,7 @@ import Login from "./Login";
 import Register from "./Register";
 import {BrowserRouter as Router, Link, Route, Routes} from "react-router-dom";
 import Header from "./components/header";
-
+require('./api/CookieCheaker');
 
 function App() {
 
@@ -19,6 +19,7 @@ function App() {
             </Routes>
         </Router>
     );
+
 }
 
 export default App;

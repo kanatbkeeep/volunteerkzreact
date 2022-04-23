@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 const axios = require('axios');
 
 export async function registrationVolunteer(firstName, secondName, email, password, phoneNumber, dateOfBirthday) {
-    const response1 = fetch('http://localhost:8080/user/createVolunteer', {
+    const response = fetch('http://localhost:8080/user/createVolunteer', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -16,11 +16,11 @@ export async function registrationVolunteer(firstName, secondName, email, passwo
         })
     })
 
-    return response1.data;
+    return response.data;
 }
 
 export async function registrationOrganizer(firstName, secondName, email, password, phoneNumber, dateOfBirthday, organizationName) {
-    const response2 = fetch('http://localhost:8080/user/createOrganizer', {
+    const response = fetch('http://localhost:8080/user/createOrganizer', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -34,11 +34,11 @@ export async function registrationOrganizer(firstName, secondName, email, passwo
         })
     })
 
-    return response2.data;
+    return response.data;
 }
 
 export async function login(email, password) {
-    let response3 = await fetch('http://localhost:8080/user/loginUser', {
+    let response = await fetch('http://localhost:8080/user/loginUser', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -47,7 +47,34 @@ export async function login(email, password) {
         })
     })
 
-    document.cookie = "Authorization=Bearer " + await response3.text();
+    let responseText = await response.text();
 
-    return response3.data;
+    if (response.ok) {
+        document.cookie = "Authorization = " + responseText;
+        const boxes = document.querySelectorAll('.singInButton');
+        boxes.forEach(box => {
+            box.style.display = 'none';
+        });
+
+        document.getElementById('profileMiniBox').style.display = 'unset'
+        document.getElementById('profileMiniBox').innerHTML = await getUserEmail(responseText);
+    } else {
+        document.getElementById('error_msg').innerHTML = "Incorrect email or password";
+        document.getElementById('error_msg').style.display = 'unset';
+    }
+
+    return response.data;
+}
+
+export async function getUserEmail(token) {
+    let response = await fetch('http://localhost:8080/user/getUserEmail', {
+        method: 'GET',
+        headers: {
+            'Authorization' : token
+        },
+    })
+
+    console.log(response);
+
+    return response.text();
 }

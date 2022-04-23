@@ -8,6 +8,7 @@ const Header = () => {
             <div>
                 <Link to="/login" className="singInButton">Войти</Link>
                 <Link to="/register" className="singInButton">Регистрация</Link>
+                <Link to="/profile" id="profileMiniBox"/>
             </div>
         </header>
     );
