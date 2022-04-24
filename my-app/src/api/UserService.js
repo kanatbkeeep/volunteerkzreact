@@ -83,3 +83,40 @@ export async function getUserEmail(token) {
 
     return response.text();
 }
+
+export async function editUser(firstName, secondName, phoneNumber, dateOfBirthday, organizationName, token) {
+    if (organizationName != null) {
+        let response = await fetch('http://localhost:8080/user/updateDataUser', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization' : token
+            },
+            body: JSON.stringify({
+                firstName: firstName,
+                secondName: secondName,
+                phoneNumber: phoneNumber,
+                dateOfBirthday: dateOfBirthday
+            })
+        })
+
+        return response.text();
+    } else {
+        let response = await fetch('http://localhost:8080/user/updateDataUser', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization' : token
+            },
+            body: JSON.stringify({
+                firstName: firstName,
+                secondName: secondName,
+                phoneNumber: phoneNumber,
+                dateOfBirthday: dateOfBirthday,
+                organizationName: organizationName
+            })
+        })
+
+        return response.text();
+    }
+}

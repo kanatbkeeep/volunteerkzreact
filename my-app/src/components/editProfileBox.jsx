@@ -1,5 +1,32 @@
 import React, {useEffect} from 'react';
 import $ from 'jquery';
+import {editUser} from "../api/UserService";
+
+function getCookie(user) {
+    let cookieArr = document.cookie.split(";");
+    for (let i = 0; i < cookieArr.length; i++) {
+        let cookiePair = cookieArr[i].split("=");
+        if (user === cookiePair[0].trim()) {
+            return decodeURIComponent(cookiePair[1]);
+        }
+    }
+    return null;
+}
+
+function updateUserInfo() {
+    let firstName = document.getElementById('firstNameEdit').innerText;
+    let secondName = document.getElementById('secondNameEdit').innerText;
+    let phoneNumber = document.getElementById('phoneNumberEdit').innerText;
+    let dateOfBirthday = document.getElementById('dateOfBirthdayEdit').innerText;
+    let organizationName;
+
+    console.log(firstName + ' ' + secondName + ' ' + phoneNumber + ' ' + dateOfBirthday);
+    if (document.getElementById('organizationNameEdit') != null) {
+        organizationName = document.getElementById('organizationNameEdit').innerText;
+    }
+
+    editUser(firstName, secondName, phoneNumber, dateOfBirthday, organizationName, getCookie("Authorization")).then(r => console.log("okay"));
+}
 
 class EditProfileBox extends React.Component {
     constructor(props) {
@@ -11,17 +38,6 @@ class EditProfileBox extends React.Component {
     }
 
     componentDidMount() {
-        function getCookie(user) {
-            let cookieArr = document.cookie.split(";");
-            for (let i = 0; i < cookieArr.length; i++) {
-                let cookiePair = cookieArr[i].split("=");
-                if (user === cookiePair[0].trim()) {
-                    return decodeURIComponent(cookiePair[1]);
-                }
-            }
-            return null;
-        }
-
         fetch(
             "http://localhost:8080/user/getUser",
             {
@@ -83,7 +99,7 @@ class EditProfileBox extends React.Component {
                 </div>
                 }
 
-                <button id="editProfileButton">изменить</button>
+                <button id="editProfileButton" onClick={updateUserInfo}>изменить</button>
             </div>
         );
     }
