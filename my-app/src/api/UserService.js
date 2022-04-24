@@ -85,7 +85,7 @@ export async function getUserEmail(token) {
 }
 
 export async function editUser(firstName, secondName, phoneNumber, dateOfBirthday, organizationName, token) {
-    if (organizationName != null) {
+    if (organizationName == null) {
         let response = await fetch('http://localhost:8080/user/updateDataUser', {
             method: 'POST',
             headers: {
