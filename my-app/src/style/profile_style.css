@@ -1,0 +1,67 @@
+.Profile {
+    padding: 0 200px;
+}
+
+.profileBox {
+    display: flex;
+    flex-direction: column;
+    background-color: #F3F3F3;
+    padding: 30px 100px;
+    margin-top: 60px;
+    border-radius: 28px;
+}
+
+.upside {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.fullName {
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.roleName {
+    background-color: #98D636;
+    color: #F3F3F3;
+    border-radius: 20px;
+    padding: 5px 10px;
+}
+
+.downside {
+    display: flex;
+    flex-direction: column;
+}
+
+.userInfo {
+    margin-bottom: 30px;
+}
+
+.userInfoEntity {
+    margin-bottom: 15px;
+}
+
+.controlButton {
+    display: flex;
+    flex-direction: column;
+}
+
+.profileButton {
+    color: white;
+    border-radius: 7px;
+    border: none;
+    padding: 3px 20px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 30px;
+    width: 200px;
+}
+
+#changeProfileInfo {
+    background-color: #98D636;
+    margin-bottom: 30px;
+}
+
+#logout {
+    background-color: #D67036;
+}

@@ -6,7 +6,7 @@ import $ from "jquery";
 
 let isVolunteer = true;
 
-const Registration_box = () => {
+const RegistrationBox = () => {
 
     return (
         <section className="authBlock">
@@ -88,4 +88,4 @@ function autoSlash() {
     }
 }
 
-export default Registration_box;
+export default RegistrationBox;

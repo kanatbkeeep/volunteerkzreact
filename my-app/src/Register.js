@@ -1,6 +1,6 @@
 import './App.css';
 import '../src/style/header_style.css'
-import Registration_box from "./components/registration_box";
+import RegistrationBox from "./components/registrationBox";
 import '../src/style/authorization_style.css'
 import '../src/api/UserService'
 import React from 'react';
@@ -9,7 +9,7 @@ function Register() {
 
     return (
         <div className="App">
-            <Registration_box/>
+            <RegistrationBox/>
         </div>
     );
 }

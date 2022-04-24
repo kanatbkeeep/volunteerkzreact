@@ -1,7 +1,3 @@
-import React, {useEffect, useState} from 'react';
-
-const axios = require('axios');
-
 export async function registrationVolunteer(firstName, secondName, email, password, phoneNumber, dateOfBirthday) {
     const response = fetch('http://localhost:8080/user/createVolunteer', {
         method: 'POST',
@@ -66,6 +62,17 @@ export async function login(email, password) {
     return response.data;
 }
 
+export async function getUser(token) {
+    let response = await fetch('http://localhost:8080/user/getUser', {
+        method: 'GET',
+        headers: {
+            'Authorization' : token
+        },
+    })
+
+    return response.text();
+}
+
 export async function getUserEmail(token) {
     let response = await fetch('http://localhost:8080/user/getUserEmail', {
         method: 'GET',
@@ -73,8 +80,6 @@ export async function getUserEmail(token) {
             'Authorization' : token
         },
     })
-
-    console.log(response);
 
     return response.text();
 }

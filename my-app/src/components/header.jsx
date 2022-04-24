@@ -1,15 +1,15 @@
-import React, {useEffect, useLayoutEffect} from 'react';
+import React, {useEffect} from 'react';
 import {Link} from "react-router-dom";
 import {getUserEmail} from "../api/UserService";
 
 function Header() {
     useEffect(() => {
             checkCookie().then(r => console.log("cookie checked"));
-        }, [])
+    }, [])
 
     return (
         <header>
-            <a href="#" className="logo">Volunteer.kz</a>
+            <a href="/login" className="logo">Volunteer.kz</a>
             <div>
                 <Link to="/login" className="singInButton">Войти</Link>
                 <Link to="/register" className="singInButton">Регистрация</Link>

@@ -8,7 +8,6 @@ import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Header from "./components/header";
 import React from 'react';
 import Profile from "./Profile";
-import {getUserEmail} from "./api/UserService";
 
 class App extends React.Component {
 
