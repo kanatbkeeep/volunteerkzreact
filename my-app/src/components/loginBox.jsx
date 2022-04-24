@@ -6,7 +6,7 @@ const Registration_box = () => {
 
     return (
         <section className="authBlock">
-
+            <h2>Вход</h2>
             <input id="email" placeholder="e-mail"/>
             <input id="password" placeholder="пароль"/>
             <span id="result_msg"/>

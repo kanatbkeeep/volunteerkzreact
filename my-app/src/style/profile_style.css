@@ -54,14 +54,17 @@
     padding: 3px 20px;
     font-family: "Montserrat", sans-serif;
     font-size: 30px;
-    width: 200px;
+    text-align: center;
 }
 
 #changeProfileInfo {
     background-color: #98D636;
     margin-bottom: 30px;
+    text-decoration: none;
+    width: 160px;
 }
 
 #logout {
     background-color: #D67036;
+    width: 200px;
 }

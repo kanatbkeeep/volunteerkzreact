@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 
 function deleteCookie() {
@@ -63,10 +64,13 @@ class ProfileBox extends React.Component {
                         <div className="userInfoEntity">email: {item.email}</div>
                         <div className="userInfoEntity">номер телефона: {item.phoneNumber}</div>
                         <div className="userInfoEntity">дата рождения: {item.dateOfBirthday}</div>
+                        {item.organizationName &&
+                        <div className="userInfoEntity">название организации: {item.organizationName}</div>
+                        }
                     </div>
 
                     <div className="controlButton">
-                        <button id="changeProfileInfo" className="profileButton">изменить</button>
+                        <Link to="/editProfile" id="changeProfileInfo" className="profileButton">изменить</Link>
                         <button id="logout" className="profileButton" onClick={deleteCookie}>выйти</button>
                     </div>
                 </div>
