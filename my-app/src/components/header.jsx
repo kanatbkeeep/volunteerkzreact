@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {Link} from "react-router-dom";
 import {getUserEmail} from "../api/UserService";
+import '../style/header_style.css';
 
 function Header() {
     useEffect(() => {
@@ -12,7 +13,6 @@ function Header() {
             <a href="/login" className="logo">Volunteer.kz</a>
             <div>
                 <Link to="/login" className="singInButton">Войти</Link>
-                <Link to="/register" className="singInButton">Регистрация</Link>
                 <Link to="/profile" id="profileMiniBox"/>
             </div>
         </header>

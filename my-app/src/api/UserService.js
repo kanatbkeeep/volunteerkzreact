@@ -55,8 +55,8 @@ export async function login(email, password) {
         document.getElementById('profileMiniBox').style.display = 'unset'
         document.getElementById('profileMiniBox').innerHTML = await getUserEmail(responseText);
     } else {
-        document.getElementById('error_msg').innerHTML = "Incorrect email or password";
-        document.getElementById('error_msg').style.display = 'unset';
+        document.getElementById('error_msgLogin').innerHTML = "Incorrect email or password";
+        document.getElementById('error_msgLogin').style.display = 'unset';
     }
 
     return response.data;
