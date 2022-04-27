@@ -10,7 +10,7 @@
     flex-direction: column;
     width: 1000px;
     padding: 60px 80px;
-    border-radius: 28px;
+    border-radius: 7px;
 }
 
 .fullNameEdit {
@@ -35,7 +35,7 @@
 .textInput {
     padding: 3px 15px;
     background-color: #E1E1E1;
-    border-radius: 7px;
+    border-radius: 3px;
 }
 
 [contenteditable] {
@@ -55,6 +55,6 @@
     outline: none;
     background-color: #98D636;
     padding: 5px 50px;
-    border-radius: 7px;
+    border-radius: 3px;
     cursor: pointer;
 }

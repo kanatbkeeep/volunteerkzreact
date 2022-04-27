@@ -1,10 +1,16 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import phoneIcon from '../image/phoneIcon.png';
+import avatar from '../image/profileAvatar.png';
 
 
 function deleteCookie() {
     document.cookie = 'Authorization =; Max-Age=0'
     window.location.href = "/login";
+}
+
+function goToEditProfile() {
+    window.location.href = "/editProfile";
 }
 
 class ProfileBox extends React.Component {
@@ -54,24 +60,58 @@ class ProfileBox extends React.Component {
 
         return (
             <div className="profileBox">
-                <div className="upside">
-                    <div className="fullName">{item.firstName + " " + item.secondName}</div>
-                    <div className="roleName">{role}</div>
-                </div>
+                <div className="backGroundProfile"/>
+                <div className="infoProfileBoxMain">
+                    <img src={avatar} className="avatar"/>
+                    <div className="fullNameProfile">
+                        <span className="firstNameProfile">{item.firstName} </span>
+                        <span className="firstNameProfile">{item.secondName}</span>
+                    </div>
+                    <div className="roleProfile">{role}</div>
+                    <div className="backGroundInfo">
+                        <div className="infoProfileBox">
+                            <img src="https://img.icons8.com/fluency/96/000000/circled-envelope.png"
+                                 className="profileIcon" id="emailIcon"/>
+                            <div className="infoProfileContent">
+                                <div className="infoProfileDisc">email</div>
+                                <div className="infoProfileResponseResult">{item.email}</div>
+                            </div>
+                        </div>
 
-                <div className="downside">
-                    <div className="userInfo">
-                        <div className="userInfoEntity">email: {item.email}</div>
-                        <div className="userInfoEntity">номер телефона: {item.phoneNumber}</div>
-                        <div className="userInfoEntity">дата рождения: {item.dateOfBirthday}</div>
+                        <div className="infoProfileBox">
+                            <img src={phoneIcon} className="profileIcon"/>
+                            <div className="infoProfileContent">
+                                <div className="infoProfileDisc">номер телефона</div>
+                                <div className="infoProfileResponseResult">{item.phoneNumber}</div>
+                            </div>
+                        </div>
+
+                        <div className="infoProfileBox">
+                            <img
+                                src="https://img.icons8.com/external-smashingstocks-circular-smashing-stocks/65/000000/external-birthday-cake-food-smashingstocks-circular-smashing-stocks.png"
+                                className="profileIcon"/>
+                            <div className="infoProfileContent">
+                                <div className="infoProfileDisc">дата рождения</div>
+                                <div className="infoProfileResponseResult">{item.dateOfBirthday}</div>
+                            </div>
+                        </div>
+
                         {item.organizationName &&
-                        <div className="userInfoEntity">название организации: {item.organizationName}</div>
+                        <div className="infoProfileBox">
+                            <img
+                                src="https://img.icons8.com/cute-clipart/64/000000/business.png"
+                                className="profileIcon"/>
+                            <div className="infoProfileContent">
+                                <div className="infoProfileDisc">имя организации</div>
+                                <div className="infoProfileResponseResult">{item.organizationName}</div>
+                            </div>
+                        </div>
                         }
                     </div>
 
-                    <div className="controlButton">
-                        <Link to="/editProfile" id="changeProfileInfo" className="profileButton">изменить</Link>
-                        <button id="logout" className="profileButton" onClick={deleteCookie}>выйти</button>
+                    <div className="profileButtonBox">
+                        <button className="profileButton editProfile" onClick={goToEditProfile}>изменить</button>
+                        <button className="profileButton logout" onClick={deleteCookie}>выйти</button>
                     </div>
                 </div>
             </div>
