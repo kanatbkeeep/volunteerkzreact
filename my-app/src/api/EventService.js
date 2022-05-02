@@ -18,3 +18,16 @@ export async function createEventApi(city, time, date, amountOfVolunteer, descri
 
     return response.data;
 }
+
+export async function getEvents() {
+    const response = fetch('http://localhost:8080/event/get', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+
+    console.log((await response).text());
+
+    return response.data;
+}
