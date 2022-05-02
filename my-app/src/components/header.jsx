@@ -10,7 +10,7 @@ function Header() {
 
     return (
         <header>
-            <a href="/login" className="logo">Volunteer.kz</a>
+            <a href="/" className="logo">Volunteer.kz</a>
             <div>
                 <Link to="/login" className="singInButton">Войти</Link>
                 <Link to="/profile" id="profileMiniBox"/>

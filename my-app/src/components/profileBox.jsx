@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from "react-router-dom";
 import phoneIcon from '../image/phoneIcon.png';
 import avatar from '../image/profileAvatar.png';
 
@@ -11,6 +10,10 @@ function deleteCookie() {
 
 function goToEditProfile() {
     window.location.href = "/editProfile";
+}
+
+function goToCreateEvent() {
+    window.location.href = "/createEvent";
 }
 
 class ProfileBox extends React.Component {
@@ -62,7 +65,7 @@ class ProfileBox extends React.Component {
             <div className="profileBox">
                 <div className="backGroundProfile"/>
                 <div className="infoProfileBoxMain">
-                    <img src={avatar} className="avatar"/>
+                    <img src={avatar} className="avatar" alt="avatar"/>
                     <div className="fullNameProfile">
                         <span className="firstNameProfile">{item.firstName} </span>
                         <span className="firstNameProfile">{item.secondName}</span>
@@ -71,7 +74,7 @@ class ProfileBox extends React.Component {
                     <div className="backGroundInfo">
                         <div className="infoProfileBox">
                             <img src="https://img.icons8.com/fluency/96/000000/circled-envelope.png"
-                                 className="profileIcon" id="emailIcon"/>
+                                 className="profileIcon" id="emailIcon" alt="icon"/>
                             <div className="infoProfileContent">
                                 <div className="infoProfileDisc">email</div>
                                 <div className="infoProfileResponseResult">{item.email}</div>
@@ -79,7 +82,7 @@ class ProfileBox extends React.Component {
                         </div>
 
                         <div className="infoProfileBox">
-                            <img src={phoneIcon} className="profileIcon"/>
+                            <img src={phoneIcon} className="profileIcon" alt="icon"/>
                             <div className="infoProfileContent">
                                 <div className="infoProfileDisc">номер телефона</div>
                                 <div className="infoProfileResponseResult">{item.phoneNumber}</div>
@@ -89,7 +92,7 @@ class ProfileBox extends React.Component {
                         <div className="infoProfileBox">
                             <img
                                 src="https://img.icons8.com/external-smashingstocks-circular-smashing-stocks/65/000000/external-birthday-cake-food-smashingstocks-circular-smashing-stocks.png"
-                                className="profileIcon"/>
+                                className="profileIcon" alt="icon"/>
                             <div className="infoProfileContent">
                                 <div className="infoProfileDisc">дата рождения</div>
                                 <div className="infoProfileResponseResult">{item.dateOfBirthday}</div>
@@ -100,12 +103,16 @@ class ProfileBox extends React.Component {
                         <div className="infoProfileBox">
                             <img
                                 src="https://img.icons8.com/cute-clipart/64/000000/business.png"
-                                className="profileIcon"/>
+                                className="profileIcon" alt="icon"/>
                             <div className="infoProfileContent">
                                 <div className="infoProfileDisc">имя организации</div>
                                 <div className="infoProfileResponseResult">{item.organizationName}</div>
                             </div>
                         </div>
+                        }
+
+                        {item.organizationName &&
+                        <button className="profileButton createEvent" onClick={goToCreateEvent}>Создать ивент</button>
                         }
                     </div>
 

@@ -5,6 +5,8 @@ import Header from "./components/header";
 import React from 'react';
 import Profile from "./Profile";
 import EditProfileInfo from "./EditProfileInfo";
+import CreateEvent from "./CreateEvent";
+import Home from "./Home";
 
 class App extends React.Component {
 
@@ -16,6 +18,8 @@ class App extends React.Component {
                 <Route path="/login" caseSensitive={false} element={<Login/>}/>
                 <Route path="/profile" caseSensitive={false} element={<Profile/>}/>
                 <Route path="/editProfile" caseSensitive={false} element={<EditProfileInfo/>}/>
+                <Route path="/createEvent" caseSensitive={false} element={<CreateEvent/>}/>
+                <Route path="/" caseSensitive={false} element={<Home/>}/>
             </Routes>
         </Router>
         )

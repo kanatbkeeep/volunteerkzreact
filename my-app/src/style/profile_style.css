@@ -72,6 +72,8 @@
     background-color: #F3F3F3;
     padding: 15px;
     border-radius: 7px;
+    display: flex;
+    flex-direction: column;
 }
 
 .infoProfileDisc {
@@ -103,4 +105,9 @@
 
 .logout {
     background-color: #D67036;
+}
+
+.createEvent {
+    margin: 20px 0 0 0;
+    align-self: center;
 }

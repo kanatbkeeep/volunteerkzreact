@@ -54,7 +54,7 @@
     font-size: 12px;
 }
 
-.form .message a {
+.form .message span {
     color: #4CAF50;
     text-decoration: none;
 }

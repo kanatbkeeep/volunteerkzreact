@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import $ from 'jquery';
 import {editUser} from "../api/UserService";
 
@@ -20,7 +20,6 @@ function updateUserInfo() {
     let dateOfBirthday = document.getElementById('dateOfBirthdayEdit').innerText;
     let organizationName;
 
-    console.log(firstName + ' ' + secondName + ' ' + phoneNumber + ' ' + dateOfBirthday);
     if (document.getElementById('organizationNameEdit') != null) {
         organizationName = document.getElementById('organizationNameEdit').innerText;
     }
@@ -57,7 +56,7 @@ class EditProfileBox extends React.Component {
     render() {
 
         $('span').on('keydown paste', function (event) {
-            if ($(this).text().length === 15 && event.keyCode != 8) {
+            if ($(this).text().length === 15 && event.keyCode !== 8) {
                 event.preventDefault();
             }
         });

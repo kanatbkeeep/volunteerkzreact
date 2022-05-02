@@ -20,15 +20,15 @@ const Authorization = () => {
                     <input type="email" placeholder="email" id="emailRegister"/>
                     <input type="password" placeholder="пароль" id="passwordRegister"/>
                     <input type="text" placeholder="имя организации" id="organizationNameRegister"/>
-                    <button onClick={createUser}>create</button>
-                    <p className="message">Already registered? <a href="#" onClick={switcher}>Sign In</a></p>
+                    <button type="button" onClick={createUser}>create</button>
+                    <p className="message">Already registered? <span onClick={switcher}>Sign In</span></p>
                 </form>
                 <form className="login-form">
                     <input type="email" placeholder="email" id="emailLogin"/>
                     <input type="password" placeholder="пароль" id="passwordLogin"/>
                     <span id="error_msgLogin"/>
-                    <button onClick={loginUser}>login</button>
-                    <p className="message">Not registered? <a href="#" onClick={switcher}>Create an account</a></p>
+                    <button type="button" onClick={loginUser}>login</button>
+                    <p className="message">Not registered? <span onClick={switcher}>Create an account</span></p>
                 </form>
             </div>
         </div>
