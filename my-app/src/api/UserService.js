@@ -30,7 +30,7 @@ export async function registrationOrganizer(firstName, secondName, email, passwo
         })
     })
 
-    return response.data;
+    return (await response).text();
 }
 
 export async function login(email, password) {

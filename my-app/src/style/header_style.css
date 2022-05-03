@@ -36,4 +36,9 @@ header {
 #profileMiniBox {
     display: none;
     font-size: 20px;
+    background-color: #98D636;
+    padding: 10px 15px;
+    color: white;
+    text-decoration: none;
+    border-radius: 3px;
 }

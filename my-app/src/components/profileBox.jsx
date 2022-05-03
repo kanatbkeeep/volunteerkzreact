@@ -1,6 +1,5 @@
 import React from 'react';
 import phoneIcon from '../image/phoneIcon.png';
-import avatar from '../image/profileAvatar.png';
 import {changePhoto} from "../api/UserService";
 
 

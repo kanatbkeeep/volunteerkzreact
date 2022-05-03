@@ -1,4 +1,4 @@
-export async function createEventApi(city, time, date, amountOfVolunteer, description, token) {
+export async function createEventApi(name, city, time, date, amountOfVolunteer, description, file, token) {
     const response = fetch('http://localhost:8080/event/add', {
         method: 'POST',
         headers: {
@@ -6,11 +6,13 @@ export async function createEventApi(city, time, date, amountOfVolunteer, descri
             'Authorization' : token
         },
         body: JSON.stringify({
+            name : name,
             city : city,
             time : time,
             date : date,
             amountOfVolunteer : amountOfVolunteer,
-            description: description
+            description: description,
+            image : file
         })
     })
 

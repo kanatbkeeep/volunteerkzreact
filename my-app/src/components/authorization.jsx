@@ -74,14 +74,27 @@ async function createUser() {
     let dateOfBirthday = document.getElementById('dateOfBirthdayRegister').value;
     let organizationName = document.getElementById('organizationNameRegister').value;
 
-    if (isVolunteer) document.getElementById('error_msgRegister').innerHTML = (await registrationVolunteer(firstName, secondName, email, password, phoneNumber, dateOfBirthday).then());
-    else registrationOrganizer(firstName, secondName, email, password, phoneNumber, dateOfBirthday, organizationName).then();
+    if (isVolunteer) {
+        let results = (await registrationVolunteer(firstName, secondName, email, password, phoneNumber, dateOfBirthday).then())
+        if (results.includes('формат почты неправильный')) document.getElementById('error_msgRegister').innerHTML = 'формат почты неправильный';
+        else if (results.includes('поле должно быть заполнена')) document.getElementById('error_msgRegister').innerHTML = 'поле должно быть заполнена';
+        else if (results.includes('Введеный формат должен быть xxxxxxxxxx')) document.getElementById('error_msgRegister').innerHTML = 'Введеный формат должен быть xxxxxxxxxx';
+        else if (results.includes('Дата должна быть прошлой')) document.getElementById('error_msgRegister').innerHTML = 'Дата должна быть прошлой';
+        else document.location.reload();
 
+    } else {
+        let results = (await registrationOrganizer(firstName, secondName, email, password, phoneNumber, dateOfBirthday, organizationName).then())
+        if (results.includes('формат почты неправильный')) document.getElementById('error_msgRegister').innerHTML = 'формат почты неправильный';
+        else if (results.includes('поле должно быть заполнена')) document.getElementById('error_msgRegister').innerHTML = 'поле должно быть заполнена';
+        else if (results.includes('Введеный формат должен быть xxxxxxxxxx')) document.getElementById('error_msgRegister').innerHTML = 'Введеный формат должен быть xxxxxxxxxx';
+        else if (results.includes('Дата должна быть прошлой')) document.getElementById('error_msgRegister').innerHTML = 'Дата должна быть прошлой';
+        else document.location.reload();
+    }
 }
 
 function autoSlash() {
     let numChars = $("#dateOfBirthdayRegister").val().length;
-    if(numChars === 2 || numChars === 5){
+    if (numChars === 2 || numChars === 5) {
         let thisVal = $("#dateOfBirthdayRegister").val();
         thisVal += '/';
         $("#dateOfBirthdayRegister").val(thisVal);

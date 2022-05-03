@@ -2,7 +2,7 @@ import React from 'react';
 import '../style/home_style.css';
 import aboutUsImage from '../image/aboutUsImage.jpg'
 import bannerImage from '../image/bannerImage.jpg'
-import expoImage from '../image/expo.jpg'
+import {Link} from "react-router-dom";
 
 class HomeBox extends React.Component {
 
@@ -10,8 +10,7 @@ class HomeBox extends React.Component {
         super(props);
 
         this.state = {
-            items: [],
-            DataIsLoaded: false
+            items: []
         };
     }
 
@@ -27,27 +26,26 @@ class HomeBox extends React.Component {
             .then((res) => res.json())
             .then((json) => {
                 this.setState({
-                    items: json,
-                    DataIsLoaded: true
+                    items: json
                 });
             })
     }
 
     render() {
-        const { DataIsLoaded, items } = this.state;
+        const { items } = this.state;
         let events;
-        if (DataIsLoaded) {
+        if (items.length !== 0) {
             events = items.map((item) => {
                     return (
-                        <div className="eventBox">
-                            <div className="eventImage" style={{backgroundImage: `url(${expoImage})`}}/>
-                            <div className="eventName">EXPO 2017</div>
+                        <Link to={"/event?id=" + item.id} className="eventBox">
+                            <div className="eventImage" style={{backgroundImage: `url(${item.image})`}}/>
+                            <div className="eventName">{item.name}</div>
                             <div className="eventInfo">город: {item.city}</div>
                             <div className="eventInfo">дата: {item.date}</div>
                             <div className="eventInfo">время: {item.time}</div>
                             <div className="eventInfo">количество: {item.amountOfVolunteer}</div>
                             <button className="eventButton">Участвовать</button>
-                        </div>
+                        </Link>
                     )
                 }
             )

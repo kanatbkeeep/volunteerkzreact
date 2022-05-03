@@ -128,3 +128,8 @@
     background-color: #E1E1E1;
     color: black;
 }
+
+#error_msgRegister, #error_msgLogin {
+    color: red;
+    font-size: 15px;
+}
