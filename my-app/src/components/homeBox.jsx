@@ -3,7 +3,6 @@ import '../style/home_style.css';
 import aboutUsImage from '../image/aboutUsImage.jpg'
 import bannerImage from '../image/bannerImage.jpg'
 import expoImage from '../image/expo.jpg'
-import {getEvents} from "../api/EventService";
 
 class HomeBox extends React.Component {
 
@@ -12,7 +11,7 @@ class HomeBox extends React.Component {
 
         this.state = {
             items: [],
-            DataisLoaded: false
+            DataIsLoaded: false
         };
     }
 
@@ -29,13 +28,32 @@ class HomeBox extends React.Component {
             .then((json) => {
                 this.setState({
                     items: json,
-                    DataisLoaded: true
+                    DataIsLoaded: true
                 });
             })
     }
 
     render() {
-        const { DataisLoaded, items } = this.state;
+        const { DataIsLoaded, items } = this.state;
+        let events;
+        if (DataIsLoaded) {
+            events = items.map((item) => {
+                    return (
+                        <div className="eventBox">
+                            <div className="eventImage" style={{backgroundImage: `url(${expoImage})`}}/>
+                            <div className="eventName">EXPO 2017</div>
+                            <div className="eventInfo">город: {item.city}</div>
+                            <div className="eventInfo">дата: {item.date}</div>
+                            <div className="eventInfo">время: {item.time}</div>
+                            <div className="eventInfo">количество: {item.amountOfVolunteer}</div>
+                            <button className="eventButton">Участвовать</button>
+                        </div>
+                    )
+                }
+            )
+        } else {
+            events = <div style={{margin: "50px 0"}}>Пока что нет иветов</div>
+        }
         return (
             <div className="home_page">
                 <div className="banner" style={{backgroundImage: `url(${bannerImage})`}}>
@@ -56,22 +74,7 @@ class HomeBox extends React.Component {
                 <div className="eventContent">
                     <h1 className="boxTitle">Волонтерствуй с нами</h1>
                     <div className="eventRow">
-                        {
-                            items.map((item) => {
-                                    return (
-                                        <div className="eventBox">
-                                            <div className="eventImage" style={{backgroundImage: `url(${expoImage})`}}/>
-                                            <div className="eventName">EXPO 2017</div>
-                                            <div className="eventInfo">город: {item.city}</div>
-                                            <div className="eventInfo">дата: {item.date}</div>
-                                            <div className="eventInfo">время: {item.time}</div>
-                                            <div className="eventInfo">количество: {item.amountOfVolunteer}</div>
-                                            <button className="eventButton">Участвовать</button>
-                                        </div>
-                                    )
-                                }
-                            )
-                        }
+                        {events}
                     </div>
                 </div>
 
@@ -83,28 +86,6 @@ class HomeBox extends React.Component {
             </div>
         )
     }
-}
-
-function getAllEvents() {
-    let items = getEvents();
-    if (Array.isArray(items)) {
-        items.map((item) => {
-                return (
-                    <div className="eventBox">
-                        <div className="eventImage" style={{backgroundImage: `url(${expoImage})`}}/>
-                        <div className="eventName">EXPO 2017</div>
-                        <div className="eventInfo">город: {item.city}</div>
-                        <div className="eventInfo">дата: {item.date}</div>
-                        <div className="eventInfo">время: {item.date}</div>
-                        <div className="eventInfo">количество: {item.amountOfVolunteer}</div>
-                        <button className="eventButton">Участвовать</button>
-                    </div>
-                )
-            }
-        )
-        console.log(1231)
-    }
-    console.log(2222)
 }
 
 export default HomeBox;

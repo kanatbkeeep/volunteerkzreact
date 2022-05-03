@@ -12,7 +12,7 @@ export async function registrationVolunteer(firstName, secondName, email, passwo
         })
     })
 
-    return response.data;
+    return (await response).text();
 }
 
 export async function registrationOrganizer(firstName, secondName, email, password, phoneNumber, dateOfBirthday, organizationName) {
@@ -66,7 +66,7 @@ export async function getUser(token) {
     let response = await fetch('http://localhost:8080/user/getUser', {
         method: 'GET',
         headers: {
-            'Authorization' : token
+            'Authorization': token
         },
     })
 
@@ -77,7 +77,7 @@ export async function getUserEmail(token) {
     let response = await fetch('http://localhost:8080/user/getUserEmail', {
         method: 'GET',
         headers: {
-            'Authorization' : token
+            'Authorization': token
         },
     })
 
@@ -90,7 +90,7 @@ export async function editUser(firstName, secondName, phoneNumber, dateOfBirthda
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization' : token
+                'Authorization': token
             },
             body: JSON.stringify({
                 firstName: firstName,
@@ -106,7 +106,7 @@ export async function editUser(firstName, secondName, phoneNumber, dateOfBirthda
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization' : token
+                'Authorization': token
             },
             body: JSON.stringify({
                 firstName: firstName,
@@ -119,4 +119,20 @@ export async function editUser(firstName, secondName, phoneNumber, dateOfBirthda
 
         return response.text();
     }
+}
+
+export async function changePhoto(token, file) {
+    let response = await fetch('http://localhost:8080/user/changePhoto', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        body: JSON.stringify({
+            file: file
+        })
+    })
+
+    document.location.reload();
+    return response.data;
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import phoneIcon from '../image/phoneIcon.png';
 import avatar from '../image/profileAvatar.png';
+import {changePhoto} from "../api/UserService";
 
 
 function deleteCookie() {
@@ -14,6 +15,33 @@ function goToEditProfile() {
 
 function goToCreateEvent() {
     window.location.href = "/createEvent";
+}
+
+function getBase64(file) {
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+        changePhoto(getCookie("Authorization"), reader.result);
+    };
+    reader.onerror = function (error) {
+        console.log('Error: ', error);
+    };
+}
+
+function getCookie(user) {
+    let cookieArr = document.cookie.split(";");
+    for (let i = 0; i < cookieArr.length; i++) {
+        let cookiePair = cookieArr[i].split("=");
+        if (user === cookiePair[0].trim()) {
+            return decodeURIComponent(cookiePair[1]);
+        }
+    }
+    return null;
+}
+
+function changeAvatars() {
+    let file = document.forms['avatarForm']['file'].files[0];
+    getBase64(file);
 }
 
 class ProfileBox extends React.Component {
@@ -65,7 +93,13 @@ class ProfileBox extends React.Component {
             <div className="profileBox">
                 <div className="backGroundProfile"/>
                 <div className="infoProfileBoxMain">
-                    <img src={avatar} className="avatar" alt="avatar"/>
+                    <img src={item.image} className="avatar" alt="avatar"/>
+                    <form name="avatarForm" encType="multipart/form-data">
+                        <label form="customFile" id="customFileLabel">
+                            изменить аватарку
+                            <input type="file" accept="image/png, image/gif, image/jpeg" formEncType="multipart/form-data" name="file" id="customFile" onChange={changeAvatars}/>
+                        </label>
+                    </form>
                     <div className="fullNameProfile">
                         <span className="firstNameProfile">{item.firstName} </span>
                         <span className="firstNameProfile">{item.secondName}</span>

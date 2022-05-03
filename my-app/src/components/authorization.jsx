@@ -20,6 +20,7 @@ const Authorization = () => {
                     <input type="email" placeholder="email" id="emailRegister"/>
                     <input type="password" placeholder="пароль" id="passwordRegister"/>
                     <input type="text" placeholder="имя организации" id="organizationNameRegister"/>
+                    <span id="error_msgRegister"/>
                     <button type="button" onClick={createUser}>create</button>
                     <p className="message">Already registered? <span onClick={switcher}>Sign In</span></p>
                 </form>
@@ -64,7 +65,7 @@ function loginUser() {
     login(email, password).then(r => console.log("logging"));
 }
 
-function createUser() {
+async function createUser() {
     let firstName = document.getElementById('firstNameRegister').value;
     let secondName = document.getElementById('secondNameRegister').value;
     let email = document.getElementById('emailRegister').value;
@@ -73,8 +74,8 @@ function createUser() {
     let dateOfBirthday = document.getElementById('dateOfBirthdayRegister').value;
     let organizationName = document.getElementById('organizationNameRegister').value;
 
-    if (isVolunteer) registrationVolunteer(firstName, secondName, email, password, phoneNumber, dateOfBirthday).then(r => console.log(r));
-    else registrationOrganizer(firstName, secondName, email, password, phoneNumber, dateOfBirthday, organizationName).then(r => console.log(r));
+    if (isVolunteer) document.getElementById('error_msgRegister').innerHTML = (await registrationVolunteer(firstName, secondName, email, password, phoneNumber, dateOfBirthday).then());
+    else registrationOrganizer(firstName, secondName, email, password, phoneNumber, dateOfBirthday, organizationName).then();
 
 }
 

@@ -27,6 +27,18 @@
 .avatar {
     width: 300px;
     height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+#customFileLabel {
+    cursor: pointer;
+    font-size: 18px;
+    text-decoration: underline;
+}
+
+#customFile {
+    display: none;
 }
 
 .fullNameProfile {
