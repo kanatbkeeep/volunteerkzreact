@@ -1,10 +1,11 @@
 import React from 'react';
+import EventBox from "./components/eventBox";
 
 function Event() {
 
     return (
         <div className="Event">
-            event
+            <EventBox/>
         </div>
     );
 }

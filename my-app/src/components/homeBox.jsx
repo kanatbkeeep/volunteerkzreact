@@ -56,7 +56,6 @@ class HomeBox extends React.Component {
             <div className="home_page">
                 <div className="banner" style={{backgroundImage: `url(${bannerImage})`}}>
                     <div className="slogan">Начни с себя - будь волонтером сегодня!</div>
-                    <button className="bannerButton">Начать</button>
                 </div>
 
                 <div className="aboutUsBox">

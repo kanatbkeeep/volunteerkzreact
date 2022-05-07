@@ -59,6 +59,8 @@ export async function login(email, password) {
         document.getElementById('error_msgLogin').style.display = 'unset';
     }
 
+    window.location.replace("http://localhost:3000/");
+
     return response.data;
 }
 
@@ -134,5 +136,21 @@ export async function changePhoto(token, file) {
     })
 
     document.location.reload();
+    return response.data;
+}
+
+export async function joinToEvent(token, id) {
+    let response = await fetch('http://localhost:8080/user/joinToEvent?' + new URLSearchParams({
+        id_event: id
+    }), {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': token
+        }
+    })
+
+    console.log(await response.text());
     return response.data;
 }
