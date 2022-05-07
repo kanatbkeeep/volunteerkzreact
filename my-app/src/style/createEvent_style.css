@@ -38,3 +38,9 @@
 .photoEventInput {
     margin: 20px 0;
 }
+
+.leaflet-container {
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+}

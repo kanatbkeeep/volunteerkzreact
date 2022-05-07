@@ -151,6 +151,6 @@ export async function joinToEvent(token, id) {
         }
     })
 
-    console.log(await response.text());
+    document.location.reload();
     return response.data;
 }

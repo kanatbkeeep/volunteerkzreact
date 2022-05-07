@@ -33,3 +33,18 @@ export async function getEvents() {
 
     return response.data;
 }
+
+export async function checkUserInEvent(token, id) {
+    let response = await fetch('http://localhost:8080/event/check?' + new URLSearchParams({
+        id_event: id
+    }), {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': token
+        }
+    })
+
+    return response.text();
+}

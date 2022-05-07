@@ -1,6 +1,6 @@
 import React from 'react';
 import '../style/eventBox_style.css'
-import {getUserEmail, joinToEvent} from "../api/UserService";
+import {joinToEvent} from "../api/UserService";
 
 function getCookie(user) {
     let cookieArr = document.cookie.split(";");
@@ -11,14 +11,6 @@ function getCookie(user) {
         }
     }
     return null;
-}
-
-async function checkOrganizer(organizer) {
-    if (organizer != null) {
-        if (organizer.email === await getUserEmail(getCookie("Authorization"))) {
-            document.getElementById('eventPageButton').style.display = "none"
-        }
-    }
 }
 
 function joinToEventButton() {
@@ -32,7 +24,9 @@ class EventBox extends React.Component {
         super(props);
 
         this.state = {
-            item: []
+            item: [],
+            checker: [],
+            user: []
         };
     }
 
@@ -57,11 +51,44 @@ class EventBox extends React.Component {
                     item: json
                 });
             })
+
+        fetch(
+            "http://localhost:8080/event/check?" + new URLSearchParams({
+                id_event: eventId
+            }),
+            {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': getCookie("Authorization")
+                }
+            })
+            .then((res) => res.json())
+            .then((json) => {
+                this.setState({
+                    checker: json
+                });
+            })
+
+        fetch(
+            'http://localhost:8080/user/getUser', {
+            method: 'GET',
+            headers: {
+                'Authorization': getCookie("Authorization")
+            },
+        })
+            .then((res) => res.json())
+            .then((json) => {
+                this.setState({
+                    user: json
+                });
+            })
     }
 
     render() {
-        const {item} = this.state;
-        checkOrganizer(item.organizer);
+        const {item, checker, user} = this.state;
+        console.log(user);
 
         return (
             <div className="EventBox">
@@ -70,11 +97,13 @@ class EventBox extends React.Component {
                     <div className="allEventInfo">
                         <div className="eventPageName">{item.name}</div>
                         <div className="eventPageInfo">город: {item.city}</div>
-                        <div className="eventPageInfo">количество: {Array.isArray(item.participants) && item.participants.length} / {item.amountOfVolunteer}</div>
+                        <div
+                            className="eventPageInfo">количество: {Array.isArray(item.participants) && item.participants.length} / {item.amountOfVolunteer}</div>
                         <div className="eventPageInfo">время: {item.time}</div>
                         <div className="eventPageInfo">дата: {item.date}</div>
-                        {!item.finish && getCookie("Authorization") &&
-                        <button onClick={joinToEventButton} type="button" className="eventPageButton" id="eventPageButton">Участвовать</button>
+                        {!item.finish && getCookie("Authorization") && !checker && user.roles[0].roleName === "VOLUNTEER" &&
+                        <button onClick={joinToEventButton} type="button" className="eventPageButton"
+                                id="eventPageButton">Участвовать</button>
                         }
                     </div>
                 </div>
@@ -82,6 +111,17 @@ class EventBox extends React.Component {
                 <div className="eventPageDescriptionBox">
                     <div className="eventPageTitle">Описание мероприятия</div>
                     <div className="eventPageDesc">{item.description}</div>
+                </div>
+
+                <div className="participants">
+                    <div className="eventPageTitle">Участники</div>
+
+                    {Array.isArray(item.participants) && item.participants.map((participant) => (
+                        <div className="participantContent">
+                            <img className="participantAvatar" src={participant.image} alt="participantAvatar"/>
+                            <div className="participantFullName">{participant.firstName} {participant.secondName}</div>
+                        </div>
+                    ))}
                 </div>
 
                 <footer>
