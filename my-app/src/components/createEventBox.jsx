@@ -1,8 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../style/createEvent_style.css';
 import {createEventApi} from "../api/EventService";
+import Map from "../Map";
+import { Style, Icon } from "ol/style";
+import { Layers, TileLayer, VectorLayer } from "../Layers";
+import Feature from "ol/Feature";
+import Point from "ol/geom/Point";
+import { osm, vector } from "../Source";
+import { fromLonLat, get } from "ol/proj";
+import { Controls, FullScreenControl } from "../Controls";
+import mapConfig from "../config.json";
 
-function CreateEventBox() {
+function addMarkers(lonLatArray) {
+    let iconStyle = new Style({
+        image: new Icon({
+            anchorXUnits: "fraction",
+            anchorYUnits: "pixels",
+            src: mapConfig.markerImage32,
+        }),
+    });
+    let features = lonLatArray.map((item) => {
+        let feature = new Feature({
+            geometry: new Point(fromLonLat(item)),
+        });
+        feature.setStyle(iconStyle);
+        return feature;
+    });
+    return features;
+}
+
+const CreateEventBox = () => {
+    const [center, setCenter] = useState(mapConfig.center);
+    const [zoom, setZoom] = useState(10);
+
+    const [showMarker, setShowMarker] = useState(false);
+
+
     return (
         <div className="createEventBox">
             <div className="formCreateEvent">
@@ -27,6 +60,15 @@ function CreateEventBox() {
 
                     <label htmlFor="eventPhoto">Фотография ивента</label>
                     <input accept="image/png, image/gif, image/jpeg" formEncType="multipart/form-data" className="createEventInput photoEventInput" type="file" id="eventPhoto" name="eventPhoto" placeholder="Фотографие ивента"/>
+
+                    <Map center={fromLonLat(center)} zoom={zoom}>
+                        <Layers>
+                            <TileLayer source={osm()} zIndex={0}/>
+                        </Layers>
+                        <Controls>
+                            <FullScreenControl />
+                        </Controls>
+                    </Map>
 
                     <input className="createEventInput" type="submit" value="Submit" onClick={createEvent}/>
                 </form>
