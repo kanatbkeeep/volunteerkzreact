@@ -8,10 +8,7 @@ import Feature from 'ol/Feature';
 import MapWrapper from '../components/MapWrapper'
 
 function CreateEventBox() {
-
-    // set intial state
     const [ features, setFeatures ] = useState([])
-
     // initialization - retrieve GeoJSON features from Mock JSON API get features from mock
     //  GeoJson API (read from flat .json file in public directory)
     useEffect( () => {
@@ -77,19 +74,27 @@ function createEvent() {
     let amountOfVolunteer = document.getElementById('amountOfVolunteer').value;
     let description = document.getElementById('description').value;
     let file = document.forms['eventForm']['eventPhoto'].files[0];
+
+    let lat
+    let long
+    if (document.getElementById('mapCreateEvent').getAttribute('data-value') == null) {
+        return;
+    }
+    else {
+        lat = document.getElementById('mapCreateEvent').getAttribute('data-value').split(",")[0];
+        long = document.getElementById('mapCreateEvent').getAttribute('data-value').split(",")[1];
+    }
+
     let token = getCookie("Authorization");
 
     let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = function () {
-        createEventApi(name, city, time, date, amountOfVolunteer, description, reader.result, token);
+        createEventApi(name, city, time, date, amountOfVolunteer, description, reader.result, token, lat, long);
     };
     reader.onerror = function (error) {
         console.log('Error: ', error);
     };
-
-
-    createEventApi(name, city, time, date, amountOfVolunteer, description, token);
 }
 
 function getCookie(user) {

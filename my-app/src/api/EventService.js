@@ -1,4 +1,4 @@
-export async function createEventApi(name, city, time, date, amountOfVolunteer, description, file, token) {
+export async function createEventApi(name, city, time, date, amountOfVolunteer, description, file, token, lat, lng) {
     const response = fetch('http://localhost:8080/event/add', {
         method: 'POST',
         headers: {
@@ -12,7 +12,9 @@ export async function createEventApi(name, city, time, date, amountOfVolunteer, 
             date : date,
             amountOfVolunteer : amountOfVolunteer,
             description: description,
-            image : file
+            image : file,
+            lat: lat,
+            lng: lng
         })
     })
 

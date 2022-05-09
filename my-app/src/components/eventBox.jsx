@@ -1,6 +1,7 @@
 import React from 'react';
 import '../style/eventBox_style.css'
 import {joinToEvent} from "../api/UserService";
+import MapWrapperEvent from "./MapWrapperEvent";
 
 function getCookie(user) {
     let cookieArr = document.cookie.split(";");
@@ -26,7 +27,8 @@ class EventBox extends React.Component {
         this.state = {
             item: [],
             checker: [],
-            user: []
+            user: [],
+            features: []
         };
     }
 
@@ -123,6 +125,7 @@ class EventBox extends React.Component {
                         </div>
                     ))}
                 </div>
+
 
                 <footer>
                     <h1>Контакты</h1>
