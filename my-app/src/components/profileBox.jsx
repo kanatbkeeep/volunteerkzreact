@@ -65,7 +65,7 @@ class ProfileBox extends React.Component {
         }
 
         fetch(
-            "http://localhost:8080/user/getUser",
+            "https://volunteer-kz.herokuapp.com/user/getUser",
             {
                 method: 'GET',
                 headers: {

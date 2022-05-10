@@ -1,5 +1,5 @@
 export async function registrationVolunteer(firstName, secondName, email, password, phoneNumber, dateOfBirthday) {
-    const response = fetch('http://localhost:8080/user/createVolunteer', {
+    const response = fetch('https://volunteer-kz.herokuapp.com/user/createVolunteer', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -16,7 +16,7 @@ export async function registrationVolunteer(firstName, secondName, email, passwo
 }
 
 export async function registrationOrganizer(firstName, secondName, email, password, phoneNumber, dateOfBirthday, organizationName) {
-    const response = fetch('http://localhost:8080/user/createOrganizer', {
+    const response = fetch('https://volunteer-kz.herokuapp.com/user/createOrganizer', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -34,7 +34,7 @@ export async function registrationOrganizer(firstName, secondName, email, passwo
 }
 
 export async function login(email, password) {
-    let response = await fetch('http://localhost:8080/user/loginUser', {
+    let response = await fetch('https://volunteer-kz.herokuapp.com/user/loginUser', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -65,7 +65,7 @@ export async function login(email, password) {
 }
 
 export async function getUser(token) {
-    let response = await fetch('http://localhost:8080/user/getUser', {
+    let response = await fetch('https://volunteer-kz.herokuapp.com/user/getUser', {
         method: 'GET',
         headers: {
             'Authorization': token
@@ -76,7 +76,7 @@ export async function getUser(token) {
 }
 
 export async function getUserEmail(token) {
-    let response = await fetch('http://localhost:8080/user/getUserEmail', {
+    let response = await fetch('https://volunteer-kz.herokuapp.com/user/getUserEmail', {
         method: 'GET',
         headers: {
             'Authorization': token
@@ -88,7 +88,7 @@ export async function getUserEmail(token) {
 
 export async function editUser(firstName, secondName, phoneNumber, dateOfBirthday, organizationName, token) {
     if (organizationName == null) {
-        let response = await fetch('http://localhost:8080/user/updateDataUser', {
+        let response = await fetch('https://volunteer-kz.herokuapp.com/user/updateDataUser', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -104,7 +104,7 @@ export async function editUser(firstName, secondName, phoneNumber, dateOfBirthda
 
         return response.text();
     } else {
-        let response = await fetch('http://localhost:8080/user/updateDataUser', {
+        let response = await fetch('https://volunteer-kz.herokuapp.com/user/updateDataUser', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -124,7 +124,7 @@ export async function editUser(firstName, secondName, phoneNumber, dateOfBirthda
 }
 
 export async function changePhoto(token, file) {
-    let response = await fetch('http://localhost:8080/user/changePhoto', {
+    let response = await fetch('https://volunteer-kz.herokuapp.com/user/changePhoto', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -140,7 +140,7 @@ export async function changePhoto(token, file) {
 }
 
 export async function joinToEvent(token, id) {
-    let response = await fetch('http://localhost:8080/user/joinToEvent?' + new URLSearchParams({
+    let response = await fetch('https://volunteer-kz.herokuapp.com/user/joinToEvent?' + new URLSearchParams({
         id_event: id
     }), {
         method: 'POST',
@@ -156,7 +156,7 @@ export async function joinToEvent(token, id) {
 }
 
 export async function leaveFromEvent(token, id) {
-    let response = await fetch('http://localhost:8080/user/leaveFromEvent?' + new URLSearchParams({
+    let response = await fetch('https://volunteer-kz.herokuapp.com/user/leaveFromEvent?' + new URLSearchParams({
         id_event: id
     }), {
         method: 'POST',

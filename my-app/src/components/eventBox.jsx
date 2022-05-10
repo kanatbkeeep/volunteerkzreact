@@ -50,7 +50,7 @@ class EventBox extends React.Component {
         let eventId = baseUrl.substring(baseUrl.lastIndexOf('=') + 1);
 
         fetch(
-            "http://localhost:8080/event/getById?" + new URLSearchParams({
+            "https://volunteer-kz.herokuapp.com/event/getById?" + new URLSearchParams({
                 id: eventId
             }),
             {
@@ -68,7 +68,7 @@ class EventBox extends React.Component {
             })
 
         fetch(
-            "http://localhost:8080/event/check?" + new URLSearchParams({
+            "https://volunteer-kz.herokuapp.com/event/check?" + new URLSearchParams({
                 id_event: eventId
             }),
             {
@@ -87,7 +87,7 @@ class EventBox extends React.Component {
             })
 
         fetch(
-            'http://localhost:8080/user/getUser', {
+            'https://volunteer-kz.herokuapp.com/user/getUser', {
             method: 'GET',
             headers: {
                 'Authorization': getCookie("Authorization")
@@ -104,6 +104,7 @@ class EventBox extends React.Component {
     render() {
         const {item, checker, user} = this.state;
         console.log(item);
+        console.log(checker);
         let participants;
         if (Array.isArray(item.participants) && item.participants.length !== 0) {
             participants = item.participants.map((participant) => {
@@ -134,15 +135,15 @@ class EventBox extends React.Component {
                                 id="eventPageButton">Участвовать</button>
                         }
 
-                        {!item.finished && checker &&
+                        {!item.finished && getCookie("Authorization") && checker &&
                         <button onClick={leaveEventButton} type="button" className="eventPageButton exitEvent">Выйти</button>
                         }
 
-                        {!item.finished && item.organizer != null && item.organizer.email === user.email &&
+                        {!item.finished && getCookie("Authorization") && item.organizer != null && item.organizer.email === user.email &&
                         <Link to={"/updateEvent?id=" + item.id} className="eventPageButton editEventButton">Изменить</Link>
                         }
 
-                        {!item.finished && item.organizer != null && item.organizer.email === user.email &&
+                        {!item.finished && getCookie("Authorization") && item.organizer != null && item.organizer.email === user.email &&
                         <button onClick={finishEventButton} type="button" className="eventPageButton exitEvent">Закончить</button>
                         }
                     </div>

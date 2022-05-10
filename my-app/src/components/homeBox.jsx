@@ -16,7 +16,7 @@ class HomeBox extends React.Component {
 
     componentDidMount() {
         fetch(
-            "http://localhost:8080/event/get",
+            "https://volunteer-kz.herokuapp.com/event/get",
             {
                 method: 'GET',
                 headers: {
@@ -35,7 +35,7 @@ class HomeBox extends React.Component {
         const { items } = this.state;
         let events;
         if (items.length !== 0) {
-            events = items.map((item) => {
+            events = items.slice(0).reverse().map((item) => {
                     return (
                         <Link to={"/event?id=" + item.id} className="eventBox">
                             <div className="eventImage" style={{backgroundImage: `url(${item.image})`}}/>
@@ -63,7 +63,7 @@ class HomeBox extends React.Component {
                     <div className="aboutUsContent">
                         <img src={aboutUsImage} className="aboutUsImg" alt="aboutUsImage"/>
                         <span className="aboutUsText">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
+                Удобная платформа для организаторов и волонтеров. Здесь вы можете быть в роле организатора создавая мероприятие, чтобы набрать нужное количество волонтеров. Так же у вас есть возможность стать волонтером и участвовать в мероприятиях.
             </span>
                     </div>
                 </div>

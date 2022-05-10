@@ -25,7 +25,7 @@ function MapWrapperFuncEvent() {
 
     useEffect(() => {
         fetch(
-            "http://localhost:8080/event/getById?" + new URLSearchParams({
+            "https://volunteer-kz.herokuapp.com/event/getById?" + new URLSearchParams({
                 id: eventId
             }),
             {

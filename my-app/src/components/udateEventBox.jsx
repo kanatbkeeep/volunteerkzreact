@@ -37,7 +37,7 @@ function UpdateEventBox() {
         let baseUrl = (window.location).href; // You can also use document.URL
         let eventId = baseUrl.substring(baseUrl.lastIndexOf('=') + 1);
         fetch(
-            "http://localhost:8080/event/getById?" + new URLSearchParams({
+            "https://volunteer-kz.herokuapp.com/event/getById?" + new URLSearchParams({
                 id: eventId
             }),
             {
@@ -106,8 +106,6 @@ function updateEvent() {
     let lat = document.getElementById('mapCreateEvent').getAttribute('data-value').split(",")[0];
     let long = document.getElementById('mapCreateEvent').getAttribute('data-value').split(",")[1];
     let token = getCookie("Authorization");
-    console.log(name);
-    console.log(file);
 
     let baseUrl = (window.location).href; // You can also use document.URL
     let eventId = baseUrl.substring(baseUrl.lastIndexOf('=') + 1);

@@ -58,7 +58,7 @@ function CreateEventBox() {
                     <input accept="image/png, image/gif, image/jpeg" formEncType="multipart/form-data" className="createEventInput photoEventInput" type="file" id="eventPhoto" name="eventPhoto" placeholder="Фотографие ивента"/>
 
                     <MapWrapper features={features} />
-                    <input className="createEventInput" type="submit" value="Submit" onClick={createEvent}/>
+                    <button className="createEventInput updateEventButton" type="button" value="Submit" onClick={createEvent}>Создать</button>
                 </form>
             </div>
         </div>

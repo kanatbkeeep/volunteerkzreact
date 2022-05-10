@@ -38,7 +38,7 @@ class EditProfileBox extends React.Component {
 
     componentDidMount() {
         fetch(
-            "http://localhost:8080/user/getUser",
+            "https://volunteer-kz.herokuapp.com/user/getUser",
             {
                 method: 'GET',
                 headers: {

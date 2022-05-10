@@ -1,5 +1,5 @@
 export async function createEventApi(name, city, time, date, amountOfVolunteer, description, file, token, lat, lng) {
-    const response = fetch('http://localhost:8080/event/add', {
+    const response = fetch('https://volunteer-kz.herokuapp.com/event/add', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export async function createEventApi(name, city, time, date, amountOfVolunteer, 
 }
 
 export async function getEvents() {
-    const response = fetch('http://localhost:8080/event/get', {
+    const response = fetch('https://volunteer-kz.herokuapp.com/event/get', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ export async function getEvents() {
 }
 
 export async function checkUserInEvent(token, id) {
-    let response = await fetch('http://localhost:8080/event/check?' + new URLSearchParams({
+    let response = await fetch('https://volunteer-kz.herokuapp.com/event/check?' + new URLSearchParams({
         id_event: id
     }), {
         method: 'GET',
@@ -52,7 +52,7 @@ export async function checkUserInEvent(token, id) {
 }
 
 export async function finishEvent(id) {
-    let response = await fetch('http://localhost:8080/event/finish?' + new URLSearchParams({
+    let response = await fetch('https://volunteer-kz.herokuapp.com/event/finish?' + new URLSearchParams({
         id: id
     }), {
         method: 'POST',
@@ -67,7 +67,7 @@ export async function finishEvent(id) {
 }
 
 export async function updateEventWithImage(id, name, city, time, date, amountOfVolunteer, description, file, token, lat, lng) {
-    let response = await fetch('http://localhost:8080/event/updateEvent?' + new URLSearchParams({
+    let response = await fetch('https://volunteer-kz.herokuapp.com/event/updateEvent?' + new URLSearchParams({
         id: id
     }), {
         method: 'POST',
@@ -88,11 +88,13 @@ export async function updateEventWithImage(id, name, city, time, date, amountOfV
         })
     })
 
+    document.location.reload();
+
     return response.data;
 }
 
 export async function updateEventWithOutImage(id, name, city, time, date, amountOfVolunteer, description, token, lat, lng) {
-    let response = await fetch('http://localhost:8080/event/updateEvent?' + new URLSearchParams({
+    let response = await fetch('https://volunteer-kz.herokuapp.com/event/updateEvent?' + new URLSearchParams({
         id: id
     }), {
         method: 'POST',
@@ -111,6 +113,8 @@ export async function updateEventWithOutImage(id, name, city, time, date, amount
             lng: lng
         })
     })
+
+    document.location.reload();
 
     return response.data;
 }
