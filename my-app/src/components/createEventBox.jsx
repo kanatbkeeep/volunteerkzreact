@@ -4,7 +4,6 @@ import {createEventApi} from "../api/EventService";
 
 // openlayers
 import GeoJSON from 'ol/format/GeoJSON'
-import Feature from 'ol/Feature';
 import MapWrapper from '../components/MapWrapper'
 
 function CreateEventBox() {

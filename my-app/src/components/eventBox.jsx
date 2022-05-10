@@ -2,8 +2,7 @@ import React from 'react';
 import '../style/eventBox_style.css'
 import {joinToEvent} from "../api/UserService";
 import MapWrapperEvent from "./MapWrapperEvent";
-import MapWrapperFuncEvent from "./MapWrapperEvent";
-import MapWrapper from "./MapWrapper";
+import {Link} from "react-router-dom";
 
 function getCookie(user) {
     let cookieArr = document.cookie.split(";");
@@ -91,7 +90,20 @@ class EventBox extends React.Component {
 
     render() {
         const {item, checker, user} = this.state;
-        console.log(user);
+        let participants;
+        if (Array.isArray(item.participants) && item.participants.length !== 0) {
+            participants = item.participants.map((participant) => {
+                    return (
+                        <div className="participantContent">
+                            <img className="participantAvatar" src={participant.image} alt="participantAvatar"/>
+                            <div className="participantFullName">{participant.firstName} {participant.secondName}</div>
+                        </div>
+                    )
+                }
+            )
+        } else {
+            participants = <div style={{margin: "0"}}>Пока что нет участников</div>
+        }
 
         return (
             <div className="EventBox">
@@ -118,12 +130,7 @@ class EventBox extends React.Component {
                 <div className="participants">
                     <div className="eventPageTitle">Участники</div>
 
-                    {Array.isArray(item.participants) && item.participants.map((participant) => (
-                        <div className="participantContent">
-                            <img className="participantAvatar" src={participant.image} alt="participantAvatar"/>
-                            <div className="participantFullName">{participant.firstName} {participant.secondName}</div>
-                        </div>
-                    ))}
+                    {participants}
                 </div>
 
                 <div className="map">

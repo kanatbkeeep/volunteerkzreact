@@ -7,7 +7,7 @@ import View from 'ol/View'
 import TileLayer from 'ol/layer/Tile'
 import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
-import {fromLonLat, transform} from 'ol/proj'
+import {fromLonLat} from 'ol/proj'
 import {OSM} from "ol/source";
 import {Icon, Style} from "ol/style";
 import mapPointImage from "../image/mapPoint.png"
@@ -16,9 +16,6 @@ import Feature from "ol/Feature";
 
 function MapWrapperFuncEvent() {
     const [map, setMap] = useState()
-    const [featuresLayer, setFeaturesLayer] = useState()
-    const [selectedCoord, setSelectedCoord] = useState()
-    const [eventItem, setEventItem] = useState([])
 
     let baseUrl = (window.location).href; // You can also use document.URL
     let eventId = baseUrl.substring(baseUrl.lastIndexOf('=') + 1);
@@ -40,7 +37,6 @@ function MapWrapperFuncEvent() {
             })
             .then((res) => res.json())
             .then((json) => {
-                setEventItem(json);
                 const initalFeaturesLayer = new VectorLayer({
                     source: new VectorSource()
                 })
@@ -82,13 +78,12 @@ function MapWrapperFuncEvent() {
                 })
 
                 setMap(initialMap)
-                setFeaturesLayer(initalFeaturesLayer)
             })
     }, [])
 
     // render component
     return (
-        <div ref={mapElement} data-value={selectedCoord} id="mapCreateEvent" className="map-container"/>
+        <div ref={mapElement} id="mapCreateEvent" className="map-container"/>
     )
 
 }
