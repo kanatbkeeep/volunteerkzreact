@@ -126,7 +126,11 @@ class EventBox extends React.Component {
                     ))}
                 </div>
 
-                <MapWrapperEvent/>
+                <div className="map">
+                    <div className="eventPageTitle mapTitle">Местопожение</div>
+                    <MapWrapperEvent/>
+                </div>
+
 
                 <footer>
                     <h1>Контакты</h1>

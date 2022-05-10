@@ -71,3 +71,12 @@
     border-radius: 50%;
     object-fit: cover;
 }
+
+.map {
+    display: flex;
+    flex-direction: column;
+}
+
+.mapTitle {
+    margin: 50px;
+}
