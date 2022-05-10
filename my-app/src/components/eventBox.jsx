@@ -2,6 +2,8 @@ import React from 'react';
 import '../style/eventBox_style.css'
 import {joinToEvent} from "../api/UserService";
 import MapWrapperEvent from "./MapWrapperEvent";
+import MapWrapperFuncEvent from "./MapWrapperEvent";
+import MapWrapper from "./MapWrapper";
 
 function getCookie(user) {
     let cookieArr = document.cookie.split(";");
@@ -27,8 +29,7 @@ class EventBox extends React.Component {
         this.state = {
             item: [],
             checker: [],
-            user: [],
-            features: []
+            user: []
         };
     }
 
@@ -99,11 +100,10 @@ class EventBox extends React.Component {
                     <div className="allEventInfo">
                         <div className="eventPageName">{item.name}</div>
                         <div className="eventPageInfo">город: {item.city}</div>
-                        <div
-                            className="eventPageInfo">количество: {Array.isArray(item.participants) && item.participants.length} / {item.amountOfVolunteer}</div>
+                        <div className="eventPageInfo">количество: {Array.isArray(item.participants) && item.participants.length} / {item.amountOfVolunteer}</div>
                         <div className="eventPageInfo">время: {item.time}</div>
                         <div className="eventPageInfo">дата: {item.date}</div>
-                        {!item.finish && getCookie("Authorization") && !checker && user.roles[0].roleName === "VOLUNTEER" &&
+                        {!item.finish && getCookie("Authorization") && !checker && Array.isArray(user.roles) && user.roles[0].roleName === "VOLUNTEER" &&
                         <button onClick={joinToEventButton} type="button" className="eventPageButton"
                                 id="eventPageButton">Участвовать</button>
                         }
@@ -126,6 +126,7 @@ class EventBox extends React.Component {
                     ))}
                 </div>
 
+                <MapWrapperEvent/>
 
                 <footer>
                     <h1>Контакты</h1>
