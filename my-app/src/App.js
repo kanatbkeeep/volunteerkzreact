@@ -8,6 +8,7 @@ import EditProfileInfo from "./EditProfileInfo";
 import CreateEvent from "./CreateEvent";
 import Home from "./Home";
 import Event from "./Event";
+import UpdateEvent from "./UpdateEvent";
 
 class App extends React.Component {
 
@@ -21,6 +22,7 @@ class App extends React.Component {
                 <Route path="/editProfile" caseSensitive={false} element={<EditProfileInfo/>}/>
                 <Route path="/createEvent" caseSensitive={false} element={<CreateEvent/>}/>
                 <Route path="/event" caseSensitive={false} element={<Event/>}/>
+                <Route path="/updateEvent" caseSensitive={false} element={<UpdateEvent/>}/>
                 <Route path="/" caseSensitive={false} element={<Home/>}/>
             </Routes>
         </Router>

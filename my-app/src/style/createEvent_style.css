@@ -72,3 +72,13 @@
 .ol-viewport:last-of-type {
     display: unset;
 }
+
+.updateEventButton {
+    background-color: #98D636;
+    color: white;
+    font-size: 30px;
+    outline: none;
+    border: none;
+    margin-top: 20px;
+    display: inline-block;
+}

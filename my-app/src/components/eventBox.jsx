@@ -139,7 +139,7 @@ class EventBox extends React.Component {
                         }
 
                         {!item.finished && item.organizer != null && item.organizer.email === user.email &&
-                        <Link to="/" className="eventPageButton editEventButton">Изменить</Link>
+                        <Link to={"/updateEvent?id=" + item.id} className="eventPageButton editEventButton">Изменить</Link>
                         }
 
                         {!item.finished && item.organizer != null && item.organizer.email === user.email &&

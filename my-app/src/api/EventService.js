@@ -65,3 +65,52 @@ export async function finishEvent(id) {
     document.location.reload();
     return response.data;
 }
+
+export async function updateEventWithImage(id, name, city, time, date, amountOfVolunteer, description, file, token, lat, lng) {
+    let response = await fetch('http://localhost:8080/event/updateEvent?' + new URLSearchParams({
+        id: id
+    }), {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name : name,
+            city : city,
+            time : time,
+            date : date,
+            amountOfVolunteer : amountOfVolunteer,
+            description: description,
+            image : file,
+            lat: lat,
+            lng: lng
+        })
+    })
+
+    return response.data;
+}
+
+export async function updateEventWithOutImage(id, name, city, time, date, amountOfVolunteer, description, token, lat, lng) {
+    let response = await fetch('http://localhost:8080/event/updateEvent?' + new URLSearchParams({
+        id: id
+    }), {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name : name,
+            city : city,
+            time : time,
+            date : date,
+            amountOfVolunteer : amountOfVolunteer,
+            description: description,
+            lat: lat,
+            lng: lng
+        })
+    })
+
+    return response.data;
+}
