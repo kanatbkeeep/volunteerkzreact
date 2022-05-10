@@ -154,3 +154,19 @@ export async function joinToEvent(token, id) {
     document.location.reload();
     return response.data;
 }
+
+export async function leaveFromEvent(token, id) {
+    let response = await fetch('http://localhost:8080/user/leaveFromEvent?' + new URLSearchParams({
+        id_event: id
+    }), {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': token
+        }
+    })
+
+    document.location.reload();
+    return response.data;
+}

@@ -1,8 +1,9 @@
 import React from 'react';
 import '../style/eventBox_style.css'
-import {joinToEvent} from "../api/UserService";
+import {joinToEvent, leaveFromEvent} from "../api/UserService";
 import MapWrapperEvent from "./MapWrapperEvent";
 import {Link} from "react-router-dom";
+import {finishEvent} from "../api/EventService";
 
 function getCookie(user) {
     let cookieArr = document.cookie.split(";");
@@ -19,6 +20,18 @@ function joinToEventButton() {
     let baseUrl = (window.location).href; // You can also use document.URL
     let eventId = baseUrl.substring(baseUrl.lastIndexOf('=') + 1);
     joinToEvent(getCookie("Authorization"), eventId);
+}
+
+function leaveEventButton() {
+    let baseUrl = (window.location).href; // You can also use document.URL
+    let eventId = baseUrl.substring(baseUrl.lastIndexOf('=') + 1);
+    leaveFromEvent(getCookie("Authorization"), eventId);
+}
+
+function finishEventButton() {
+    let baseUrl = (window.location).href; // You can also use document.URL
+    let eventId = baseUrl.substring(baseUrl.lastIndexOf('=') + 1);
+    finishEvent(eventId);
 }
 
 class EventBox extends React.Component {
@@ -90,6 +103,7 @@ class EventBox extends React.Component {
 
     render() {
         const {item, checker, user} = this.state;
+        console.log(item);
         let participants;
         if (Array.isArray(item.participants) && item.participants.length !== 0) {
             participants = item.participants.map((participant) => {
@@ -115,9 +129,21 @@ class EventBox extends React.Component {
                         <div className="eventPageInfo">количество: {Array.isArray(item.participants) && item.participants.length} / {item.amountOfVolunteer}</div>
                         <div className="eventPageInfo">время: {item.time}</div>
                         <div className="eventPageInfo">дата: {item.date}</div>
-                        {!item.finish && getCookie("Authorization") && !checker && Array.isArray(user.roles) && user.roles[0].roleName === "VOLUNTEER" &&
+                        {!item.finished && getCookie("Authorization") && !checker && Array.isArray(user.roles) && user.roles[0].roleName === "VOLUNTEER" &&
                         <button onClick={joinToEventButton} type="button" className="eventPageButton"
                                 id="eventPageButton">Участвовать</button>
+                        }
+
+                        {!item.finished && checker &&
+                        <button onClick={leaveEventButton} type="button" className="eventPageButton exitEvent">Выйти</button>
+                        }
+
+                        {!item.finished && item.organizer != null && item.organizer.email === user.email &&
+                        <Link to="/" className="eventPageButton editEventButton">Изменить</Link>
+                        }
+
+                        {!item.finished && item.organizer != null && item.organizer.email === user.email &&
+                        <button onClick={finishEventButton} type="button" className="eventPageButton exitEvent">Закончить</button>
                         }
                     </div>
                 </div>

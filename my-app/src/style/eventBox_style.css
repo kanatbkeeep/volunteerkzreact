@@ -80,3 +80,14 @@
 .mapTitle {
     margin: 50px;
 }
+
+.exitEvent {
+    background-color: #dc6868;
+}
+
+.editEventButton{
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+}

@@ -50,3 +50,18 @@ export async function checkUserInEvent(token, id) {
 
     return response.text();
 }
+
+export async function finishEvent(id) {
+    let response = await fetch('http://localhost:8080/event/finish?' + new URLSearchParams({
+        id: id
+    }), {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    })
+
+    document.location.reload();
+    return response.data;
+}
